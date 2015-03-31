@@ -3,7 +3,7 @@ package com.pteraforce.compare2string.comparators;
 import java.util.Comparator;
 
 /**
- * Compares two floats that are represented in string form. This comparator
+ * Compares two ints that are represented in string form. This comparator
  * is needed because the default sorting algorithm will sort these values
  * alphabetically, not numerically. This means it will sort one digit at a
  * time.
@@ -30,52 +30,52 @@ import java.util.Comparator;
  * @author Tyler Smith
  * @version 1.0.0
  */
-public class FloatComparator implements Comparator<String> {
+public class IntComparator implements Comparator<String> {
 	/**
-	 * Return a comparison between two floats. This method returns 1 if the
+	 * Return a comparison between two ints. This method returns 1 if the
 	 * first number is greater than, -1 if it is less than, and 0 if it is 
 	 * equal to the second number.
 	 * 
 	 * @param arg0 The first number.
 	 * @param arg1 The second number.
-	 * @return -1, 0, or 1 depending on if the first float is less than, 
-	 * equal to, or greater than the second float, respectively.
+	 * @return -1, 0, or 1 depending on if the first int is less than, 
+	 * equal to, or greater than the second int, respectively.
 	 */
 	@Override
 	public int compare(String arg0, String arg1) {
-		float float0 = 0.0f;
-		float float1 = 0.0f;
-		boolean float0Valid = true;
-		boolean float1Valid = true;
+		int int0 = 0;
+		int int1 = 0;
+		boolean int0Valid = true;
+		boolean int1Valid = true;
 		
-		// attempt to parse the floats
-		// if the parsing fails, mark that float as invalid
+		// attempt to parse the ints
+		// if the parsing fails, mark that int as invalid
 		try {
-			float0 = Float.parseFloat(arg0);
+			int0 = Integer.parseInt(arg0);
 		} catch (NumberFormatException e) {
-			float0Valid = false;
+			int0Valid = false;
 		}
 		
 		try {
-			float1 = Float.parseFloat(arg1);
+			int1 = Integer.parseInt(arg1);
 		} catch (NumberFormatException e) {
-			float1Valid = false;
+			int1Valid = false;
 		}
 		
-		// if only one float is valid, consider it to be the larger number
-		// if neither of the floats are valid, consider them equal
-		if (float0Valid && !float1Valid) {
+		// if only one int is valid, consider it to be the larger number
+		// if neither of the int are valid, consider them equal
+		if (int0Valid && !int1Valid) {
 			return 1;
-		} else if (!float0Valid && float1Valid) {
+		} else if (!int0Valid && int1Valid) {
 			return -1;
-		} else if (!float0Valid && !float1Valid) {
+		} else if (!int0Valid && !int1Valid) {
 			return 0;
 		}
 
-		// both floats are valid, compare
-		if (float0 > float1) { 
+		// both ints are valid, compare
+		if (int0 > int1) { 
 			return 1;
-		} else if (float0 < float1) {
+		} else if (int0 < int1) {
 			return -1;
 		} else {
 			return 0;
